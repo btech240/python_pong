@@ -1,7 +1,6 @@
-from turtle import Screen, Turtle
+from turtle import Screen
 
-# Creat starting variables
-game_is_on = True
+from paddle import Paddle
 
 # Create screen and configure
 screen = Screen()
@@ -11,30 +10,20 @@ screen.bgcolor("black")
 # Tracer 0 so we don't see paddle move to starting position
 screen.tracer(0)
 
-# Create paddles
-player = Turtle()
-player.shape("square")
-player.color("white")
-player.shapesize(stretch_wid=5, stretch_len=1)
-player.penup()
-player.goto(350, 0)
-
-
-def go_up():
-    new_y = player.ycor() + 20
-    player.goto(player.xcor(), new_y)
-
-
-def go_down():
-    new_y = player.ycor() - 20
-    player.goto(player.xcor(), new_y)
-
+# Create both paddle objects
+l_paddle = Paddle((-350, 0))
+r_paddle = Paddle((350, 0))
 
 screen.listen()
-screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
 
+# Left paddle control
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down, "s")
+# Right paddle control
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down, "Down")
 
+game_is_on = True
 while game_is_on:
     screen.update()
 
