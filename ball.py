@@ -20,9 +20,11 @@ class Ball(Turtle):
         self.y_move *= -1
 
     # The hit function sends the ball in the opposite XCor direction
+
     def hit(self):
-        self.x_move *= -1
+        self.x_move *= -1.2
 
     def reset(self):
+        self.x_move = 1
         self.goto(0, 0)
         self.hit()
